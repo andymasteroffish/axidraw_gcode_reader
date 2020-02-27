@@ -1,7 +1,9 @@
 '''
 #TODO
 [X] show percentage complete
-[ ] scaling options
+[X] scaling options
+[ ] a way to pause
+[ ] show times in HH:MM:SS
 
 
 
@@ -22,12 +24,59 @@ import time
 
 from pyaxidraw import axidraw
 
-#get arguments
+#values
 file_name = "NONE"
+scale_factor = 1
+
+def seconds2time(raw):
+
+	hours = 0
+	minutes = 0
+	seconds = 0
+
+	while raw > 3600:
+		hours += 1
+		raw -= 3600
+
+	while raw > 60:
+		minutes += 1
+		raw -= 60
+
+	seconds = raw
+
+
+	min_s = str(minutes)
+	if minutes < 10:
+		min_s = "0"+str(minutes)
+
+	sec_s = str(int(seconds))
+	if seconds < 10:
+		sec_s = "0"+str(int(seconds))
+
+	return str(hours)+":"+min_s+":"+sec_s
+
+	
+#get arguments
 if (len(sys.argv) >= 2):
+
+	#first argument should always be file name
 	file_name = sys.argv[1]
 	print("opening ",file_name)
 
+	#after that it could be a mix of commands
+	i=2
+	while i < len(sys.argv):
+		arg = sys.argv[i]
+		val = sys.argv[i+1]
+		i += 2
+		#print("arg:",arg,"  val:",val)
+		if (arg == "-s"):
+			scale_factor = float(val)
+		
+
+print("scale: ",scale_factor)
+
+#do our thing
 file = open(file_name)
 file_lines = file.readlines()
 print("lines: ",len(file_lines))
@@ -56,7 +105,9 @@ for this_line in file_lines:
 	prc = float(line_count)/float(len(file_lines))
 	elapsed_time = time.time() - start_time
 	time_left = (elapsed_time / prc) - elapsed_time
-	print ("progress: %.0f  time: %.2f  estimated time left %.2f" % ( (prc*100), elapsed_time, time_left))
+
+	progress_str = str( int(prc*100))
+	print ("progress: "+progress_str+"  time: "+seconds2time(elapsed_time)+"  estimated time left: "+seconds2time(time_left))
 
 	#print(this_line[0:-1])	#chopping off the last character because it is a newlien char
 
@@ -89,8 +140,8 @@ for this_line in file_lines:
 		y_val_s = this_line[y_index+1:end_index]
 		#print(" x val_s: ",x_val_s)
 		#print(" y val_s: ",y_val_s)
-		x_val = float(x_val_s)
-		y_val = float(y_val_s)
+		x_val = float(x_val_s) * scale_factor
+		y_val = float(y_val_s) * scale_factor
 		#print(" x val: ",x_val)
 		#print(" y val: ",y_val)
 
@@ -103,6 +154,11 @@ for this_line in file_lines:
 ad.penup()
 ad.moveto(0,0)
 ad.disconnect()
+
+
+
+
+
 
 
 
