@@ -57,17 +57,20 @@ while(keep_going):
 
     #check for arrows by converting chars to int
     if ord(inp[0]) == 27:
+        #up
         if ord(inp[2]) == 65:
-            print("up")
             ad.go(0,-move_dist)
-        if ord(inp[2]) == 66:
-            print("down")
+
+        #down
+        if ord(inp[2]) == 66:\
             ad.go(0,move_dist)
+
+        #right
         if ord(inp[2]) == 67:
-            print("right")
             ad.go(move_dist,0)
+
+        #left
         if ord(inp[2]) == 68:
-            print("left")
             ad.go(-move_dist,0)
 
     
