@@ -1,9 +1,11 @@
 '''
+https://axidraw.com/doc/py_api/
+
 #TODO
 [X] show percentage complete
 [X] scaling options
 [ ] a way to pause
-[ ] show times in HH:MM:SS
+[X] show times in HH:MM:SS
 
 
 
@@ -27,6 +29,11 @@ from pyaxidraw import axidraw
 #values
 file_name = "NONE"
 scale_factor = 1
+
+#https://axidraw.com/doc/py_api/#speed_pendown
+pen_down_speed = 25
+#https://axidraw.com/doc/py_api/#const_speed
+use_const_speed = False
 
 def seconds2time(raw):
 
@@ -67,14 +74,24 @@ if (len(sys.argv) >= 2):
 	i=2
 	while i < len(sys.argv):
 		arg = sys.argv[i]
-		val = sys.argv[i+1]
+		if (i<len(sys.argv)-1):
+			val = sys.argv[i+1]
 		i += 2
 		#print("arg:",arg,"  val:",val)
 		if (arg == "-s"):
 			scale_factor = float(val)
+
+		if (arg == "-d"):
+			pen_down_speed = float(val)
+
+		if (arg == "-c"):
+			use_const_speed = True
+			i-=1	#no value for this option
 		
 
 print("scale: ",scale_factor)
+print("pen down speed: ",pen_down_speed)
+print("use constant speed: ",use_const_speed)
 
 #do our thing
 file = open(file_name)
@@ -90,10 +107,12 @@ if not connected:
 	sys.exit()
 
 ad.options.model=2	#AxiDraw V3/A3
+ad.options.speed_pendown = pen_down_speed
+ad.options.const_speed = use_const_speed
+
+ad.update() #set the options
 
 ad.penup()
-
-print("hello dad")
 
 start_time = time.time()
 
