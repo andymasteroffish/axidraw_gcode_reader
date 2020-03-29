@@ -129,12 +129,12 @@ ad.penup()
 start_time = time.time()
 
 pen_down = False
+line_count = 0
 
 for copy_id in range(0, num_copies):
 
 	x_offset = copy_id * copies_spacing
 
-	line_count = 0
 	for this_line in file_lines:
 		line_count += 1
 		prc = float(line_count)/float(len(file_lines) * num_copies)
