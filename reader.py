@@ -35,6 +35,10 @@ pen_down_speed = 25
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
 
+num_copies = 1
+copies_spacing = 3
+
+
 def seconds2time(raw):
 
 	hours = 0
@@ -84,14 +88,22 @@ if (len(sys.argv) >= 2):
 		if (arg == "-d"):
 			pen_down_speed = float(val)
 
-		if (arg == "-c"):
+		if (arg == "-const"):
 			use_const_speed = True
 			i-=1	#no value for this option
+
+		if (arg == "-c"):
+			num_copies = int(val)
+
+		if (arg == "-cs"):
+			copies_spacing = float(val)
 		
 
 print("scale: ",scale_factor)
 print("pen down speed: ",pen_down_speed)
 print("use constant speed: ",use_const_speed)
+print("copies: ",num_copies)
+print("copies spacing: ",copies_spacing)
 
 #do our thing
 file = open(file_name)
@@ -118,59 +130,63 @@ start_time = time.time()
 
 pen_down = False
 
-line_count = 0
-for this_line in file_lines:
-	line_count += 1
-	prc = float(line_count)/float(len(file_lines))
-	elapsed_time = time.time() - start_time
-	time_left = (elapsed_time / prc) - elapsed_time
+for copy_id in range(0, num_copies):
 
-	progress_str = str( int(prc*100))
-	print ("progress: "+progress_str+"  time: "+seconds2time(elapsed_time)+"  estimated time left: "+seconds2time(time_left))
+	x_offset = copy_id * copies_spacing
 
-	#print(this_line[0:-1])	#chopping off the last character because it is a newlien char
+	line_count = 0
+	for this_line in file_lines:
+		line_count += 1
+		prc = float(line_count)/float(len(file_lines) * num_copies)
+		elapsed_time = time.time() - start_time
+		time_left = (elapsed_time / prc) - elapsed_time
 
-	cmd = this_line[0:2]
+		progress_str = str( int(prc*100))
+		print ("progress: "+progress_str+"  time: "+seconds2time(elapsed_time)+"  estimated time left: "+seconds2time(time_left))
 
-	if cmd == "M3":
-		val = int(this_line[4:])		#get the string to the end of the string and converts to int
-		#print(" val:",val)
-		pen_down = val > 0
-		if pen_down:
-			ad.pendown()
-		else:
-			ad.penup()
-		#print(" pen down: ",pen_down)
+		#print(this_line[0:-1])	#chopping off the last character because it is a newlien char
 
-	if cmd == "G0" or cmd == "G1":
-		#we need X and Y
-		x_index = this_line.find("X")
-		y_index = this_line.find("Y")
-		end_index = y_index
+		cmd = this_line[0:2]
 
-		while this_line[end_index] != " " and end_index < len(this_line)-1:
-			end_index += 1
+		if cmd == "M3":
+			val = int(this_line[4:])		#get the string to the end of the string and converts to int
+			#print(" val:",val)
+			pen_down = val > 0
+			if pen_down:
+				ad.pendown()
+			else:
+				ad.penup()
+			#print(" pen down: ",pen_down)
 
-		#print(" x index: ",x_index)
-		#print(" y index: ",y_index)
-		#print(" end index: ",end_index)
+		if cmd == "G0" or cmd == "G1":
+			#we need X and Y
+			x_index = this_line.find("X")
+			y_index = this_line.find("Y")
+			end_index = y_index
 
-		x_val_s = this_line[x_index+1:y_index-1]
-		y_val_s = this_line[y_index+1:end_index]
-		#print(" x val_s: ",x_val_s)
-		#print(" y val_s: ",y_val_s)
-		x_val = float(x_val_s) * scale_factor
-		y_val = float(y_val_s) * scale_factor
-		#print(" x val: ",x_val)
-		#print(" y val: ",y_val)
+			while this_line[end_index] != " " and end_index < len(this_line)-1:
+				end_index += 1
 
-		ad.goto(x_val, y_val)
+			#print(" x index: ",x_index)
+			#print(" y index: ",y_index)
+			#print(" end index: ",end_index)
 
-	#print(cmd)
+			x_val_s = this_line[x_index+1:y_index-1]
+			y_val_s = this_line[y_index+1:end_index]
+			#print(" x val_s: ",x_val_s)
+			#print(" y val_s: ",y_val_s)
+			x_val = float(x_val_s) * scale_factor
+			y_val = float(y_val_s) * scale_factor
+			#print(" x val: ",x_val)
+			#print(" y val: ",y_val)
 
-#cleanup
+			ad.goto(x_val+x_offset, y_val)
 
-ad.penup()
+		#print(cmd)
+
+	#cleanup
+	ad.penup()
+	
 ad.moveto(0,0)
 ad.disconnect()
 

@@ -11,7 +11,7 @@ print('Space - pen up/down')
 print('Q - quit')
 
 keep_going = True
-move_dist = 0.05
+move_dist = 0.02
 pen_down = False
 
 
@@ -54,6 +54,10 @@ while(keep_going):
             ad.pendown()
         else:
             ad.penup()
+
+    if inp == 'h':
+        ad.penup()
+        ad.goto(0,0)
 
     #check for arrows by converting chars to int
     if ord(inp[0]) == 27:
