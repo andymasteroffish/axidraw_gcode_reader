@@ -82,10 +82,10 @@ if (len(sys.argv) >= 2):
 			val = sys.argv[i+1]
 		i += 2
 		#print("arg:",arg,"  val:",val)
-		if (arg == "-s"):
+		if (arg == "-scale"):
 			scale_factor = float(val)
 
-		if (arg == "-d"):
+		if (arg == "-s"):
 			pen_down_speed = float(val)
 
 		if (arg == "-const"):
