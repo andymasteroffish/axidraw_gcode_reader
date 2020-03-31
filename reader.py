@@ -36,7 +36,7 @@ pen_down_speed = 25
 use_const_speed = False
 
 num_copies = 1
-copies_spacing = 3
+copies_spacing = 2.7
 
 
 def seconds2time(raw):
