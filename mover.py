@@ -11,7 +11,7 @@ print('Space - pen up/down')
 print('Q - quit')
 
 keep_going = True
-move_dist = 0.02
+move_dist = 0.01
 pen_down_height = 40
 pen_down = False
 
