@@ -32,11 +32,23 @@ scale_factor = 1
 
 #https://axidraw.com/doc/py_api/#speed_pendown
 pen_down_speed = 25
+pen_up_speed = 75
+pen_down_height = 40
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
 
 num_copies = 1
 copies_spacing = 2.7
+
+def print_arguments():
+	print("-scale : multiplier for print scale")
+	print("-s or -speed : pen down speed")
+	print("-up_speed : pen up speed")
+	print("-conts : move at constant speed")
+	print("-pos_down : pen down height (0-100)")
+	print("-c or -copies: number of copies (horizontally)")
+	print("-cs : copy spacing (horizontally in inches)")
+	print("-h or -help: help")
 
 
 def seconds2time(raw):
@@ -72,6 +84,11 @@ if (len(sys.argv) >= 2):
 
 	#first argument should always be file name
 	file_name = sys.argv[1]
+
+	if file_name == '-h' or file_name == '-help':
+		print_arguments()
+		sys.exit();
+
 	print("opening ",file_name)
 
 	#after that it could be a mix of commands
@@ -82,26 +99,38 @@ if (len(sys.argv) >= 2):
 			val = sys.argv[i+1]
 		i += 2
 		#print("arg:",arg,"  val:",val)
-		if (arg == "-scale"):
+		if arg == "-scale":
 			scale_factor = float(val)
 
-		if (arg == "-s"):
+		if arg == "-s" or arg == "-speed":
 			pen_down_speed = float(val)
 
-		if (arg == "-const"):
+		if arg == "-up_speed":
+			pen_up_speed = float(val)
+
+		if arg == "-pos_down":
+			pen_down_height = float(val)
+
+		if arg == "-const":
 			use_const_speed = True
 			i-=1	#no value for this option
 
-		if (arg == "-c"):
+		if arg == "-c" or arg == "-copeis":
 			num_copies = int(val)
 
-		if (arg == "-cs"):
+		if arg == "-cs":
 			copies_spacing = float(val)
+
+		if arg == "-h" or arg == "-help":
+			print_arguments()
+			sys.exit();
 		
 
 print("scale: ",scale_factor)
 print("pen down speed: ",pen_down_speed)
+print("pen up speed: ",pen_up_speed)
 print("use constant speed: ",use_const_speed)
+print("pen down height: ",pen_down_height)
 print("copies: ",num_copies)
 print("copies spacing: ",copies_spacing)
 
@@ -120,7 +149,9 @@ if not connected:
 
 ad.options.model=2	#AxiDraw V3/A3
 ad.options.speed_pendown = pen_down_speed
+ad.options.speed_penup = pen_up_speed
 ad.options.const_speed = use_const_speed
+ad.options.pen_down_height = pen_down_height
 
 ad.update() #set the options
 

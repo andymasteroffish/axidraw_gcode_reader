@@ -12,6 +12,7 @@ print('Q - quit')
 
 keep_going = True
 move_dist = 0.02
+pen_down_height = 40
 pen_down = False
 
 
@@ -27,7 +28,12 @@ if (len(sys.argv) >= 2):
         if (arg == "-d"):
             move_dist = float(val)
 
+        if (arg == "-pen_height"):
+            pen_down_height = float(val)
+
 print("move dist "+str(move_dist))
+            pen_down_height = float(val)
+print("pen height "+str(move_dist))
 
 #connect axidraw
 ad = axidraw.AxiDraw()
@@ -37,6 +43,10 @@ connected = ad.connect()
 if not connected:
     print("not connected")
     sys.exit()
+
+ad.options.model=2  #AxiDraw V3/A3
+ad.options.pen_down_height = pen_down_height
+ad.update() #set the options
 
 ad.penup()
 
