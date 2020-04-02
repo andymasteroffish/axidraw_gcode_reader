@@ -44,7 +44,7 @@ if not connected:
     sys.exit()
 
 ad.options.model=2  #AxiDraw V3/A3
-ad.options.pen_down_height = pen_down_height
+ad.options.pen_pos_down = pen_down_height
 ad.update() #set the options
 
 ad.penup()
