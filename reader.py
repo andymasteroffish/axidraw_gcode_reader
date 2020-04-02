@@ -33,7 +33,7 @@ scale_factor = 1
 #https://axidraw.com/doc/py_api/#speed_pendown
 pen_down_speed = 25
 pen_up_speed = 75
-pen_down_height = 40
+pen_down_height = 42  #axidraw default is 40
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
 
@@ -48,6 +48,7 @@ def print_arguments():
 	print("-pos_down : pen down height (0-100)")
 	print("-c or -copies: number of copies (horizontally)")
 	print("-cs : copy spacing (horizontally in inches)")
+	print("-text : slow setting for text (overrides -s, -up_speed, -pos_down)")
 	print("-h or -help: help")
 
 
@@ -102,27 +103,37 @@ if (len(sys.argv) >= 2):
 		if arg == "-scale":
 			scale_factor = float(val)
 
-		if arg == "-s" or arg == "-speed":
+		elif arg == "-s" or arg == "-speed":
 			pen_down_speed = float(val)
 
-		if arg == "-up_speed":
+		elif arg == "-up_speed":
 			pen_up_speed = float(val)
 
-		if arg == "-pos_down":
+		elif arg == "-pos_down":
 			pen_down_height = float(val)
 
-		if arg == "-const":
+		elif arg == "-const":
 			use_const_speed = True
 			i-=1	#no value for this option
 
-		if arg == "-c" or arg == "-copeis":
+		elif arg == "-c" or arg == "-copeis":
 			num_copies = int(val)
 
-		if arg == "-cs":
+		elif arg == "-cs":
 			copies_spacing = float(val)
 
-		if arg == "-h" or arg == "-help":
+		elif arg == "-h" or arg == "-help":
 			print_arguments()
+			sys.exit();
+
+		elif arg == "-text":
+			pen_down_speed = 1
+			pen_up_speed = 4
+			pen_pos_down = 43
+
+
+		else:
+			print("i don't know this command:",arg)
 			sys.exit();
 		
 
@@ -151,7 +162,7 @@ ad.options.model=2	#AxiDraw V3/A3
 ad.options.speed_pendown = pen_down_speed
 ad.options.speed_penup = pen_up_speed
 ad.options.const_speed = use_const_speed
-ad.options.pen_down_height = pen_down_height
+ad.options.pen_pos_down = pen_down_height
 
 ad.update() #set the options
 
