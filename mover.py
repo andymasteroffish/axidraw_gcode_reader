@@ -32,7 +32,7 @@ if (len(sys.argv) >= 2):
             pen_down_height = float(val)
 
 print("move dist "+str(move_dist))
-print("pen height "+str(move_dist))
+print("pen height "+str(pen_down_height))
 
 #connect axidraw
 ad = axidraw.AxiDraw()
