@@ -33,7 +33,7 @@ scale_factor = 1
 #https://axidraw.com/doc/py_api/#speed_pendown
 pen_down_speed = 25
 pen_up_speed = 75
-pen_down_height = 50  #axidraw default is 40
+pen_down_height = 45  #axidraw default is 40
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
 
