@@ -12,7 +12,7 @@ print('Q - quit')
 
 keep_going = True
 move_dist = 0.01
-pen_down_height = 40
+pen_down_height = 50
 pen_down = False
 
 
