@@ -127,8 +127,11 @@ if (len(sys.argv) >= 2):
 			sys.exit();
 
 		elif arg == "-text":
-			pen_down_speed = 1
-			pen_up_speed = 4
+			# pen_down_speed = 1
+			# pen_up_speed = 4
+			# pen_pos_down = 43
+			pen_down_speed = 4
+			pen_up_speed = 10
 			pen_pos_down = 43
 
 
