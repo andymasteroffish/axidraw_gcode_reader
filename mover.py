@@ -1,5 +1,3 @@
-#this will not work with python 3
-
 import os
 import sys
 
@@ -11,7 +9,7 @@ print('Space - pen up/down')
 print('Q - quit')
 
 python_version = sys.version_info[0]
-print("python version: "+str(python_version))
+#print("python version: "+str(python_version))
 
 keep_going = True
 move_dist = 0.01
