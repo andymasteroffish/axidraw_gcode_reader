@@ -10,6 +10,9 @@ print('Arrows - move')
 print('Space - pen up/down')
 print('Q - quit')
 
+python_version = sys.version_info[0]
+print("python version: "+str(python_version))
+
 keep_going = True
 move_dist = 0.01
 pen_down_height = 45
@@ -51,7 +54,10 @@ ad.penup()
 
 
 while(keep_going):
-    inp = raw_input()
+    if python_version >= 3:
+        inp = input()
+    else:
+        inp = raw_input()
     
     if inp == "q":
         keep_going = False
