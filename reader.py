@@ -112,6 +112,7 @@ if (len(sys.argv) >= 2):
 			pen_down_speed = 3
 			pen_up_speed = 10
 			pen_pos_down = 43
+			i -= 1
 
 		elif arg == "-s" or arg == "-speed":
 			pen_down_speed = float(val)
