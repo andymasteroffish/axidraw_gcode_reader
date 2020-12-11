@@ -105,6 +105,14 @@ if (len(sys.argv) >= 2):
 		if arg == "-scale":
 			scale_factor = float(val)
 
+		elif arg == "-text":
+			# pen_down_speed = 1
+			# pen_up_speed = 4
+			# pen_pos_down = 43
+			pen_down_speed = 3
+			pen_up_speed = 10
+			pen_pos_down = 43
+
 		elif arg == "-s" or arg == "-speed":
 			pen_down_speed = float(val)
 
@@ -131,14 +139,7 @@ if (len(sys.argv) >= 2):
 			print_arguments()
 			sys.exit();
 
-		elif arg == "-text":
-			# pen_down_speed = 1
-			# pen_up_speed = 4
-			# pen_pos_down = 43
-			pen_down_speed = 3
-			pen_up_speed = 10
-			pen_pos_down = 43
-
+		
 
 		else:
 			print("i don't know this command:",arg)
