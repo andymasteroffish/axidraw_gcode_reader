@@ -47,7 +47,7 @@ def print_arguments():
 	print("-s or -speed : pen down speed")
 	print("-up_speed : pen up speed")
 	print("-conts : move at constant speed")
-	print("-pos_down : pen down height (0-100)")
+	print("-pos_down : pen down height (0-100)  (lower numbers = lower pen, default 45)")
 	print("-c or -copies: number of copies (horizontally)")
 	print("-cs : copy spacing (horizontally in inches)")
 	print("-text : slow setting for text (overrides -s, -up_speed, -pos_down)")

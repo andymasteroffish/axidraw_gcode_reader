@@ -29,11 +29,17 @@ if (len(sys.argv) >= 2):
         if (arg == "-d"):
             move_dist = float(val)
 
-        if (arg == "-pen_height"):
+        if (arg == "-pos_down"):
             pen_down_height = float(val)
 
+        if (arg == "-h"):
+            print("-d : move distance")
+            print("-pos_down : pen down position (lower numbers = lower pen, default 45)")
+            sys.exit()
+
+
 print("move dist "+str(move_dist))
-print("pen height "+str(pen_down_height))
+print("pen down height "+str(pen_down_height))
 
 #connect axidraw
 ad = axidraw.AxiDraw()
