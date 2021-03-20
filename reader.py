@@ -113,6 +113,7 @@ if (len(sys.argv) >= 2):
 			pen_down_speed = 3
 			pen_up_speed = 10
 			pen_pos_down = 43
+			pen_up_delay = 100
 			i -= 1
 
 		elif arg == "-s" or arg == "-speed":
@@ -129,7 +130,7 @@ if (len(sys.argv) >= 2):
 			i-=1	#no value for this option
 
 		elif arg == "-d":
-			pen_up_delay = float(val)
+			pen_up_delay = int(val)
 
 		elif arg == "-c" or arg == "-copeis":
 			num_copies = int(val)
