@@ -36,8 +36,8 @@ pen_up_speed = 75
 pen_down_height = 45  #axidraw default is 40
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
-#https://axidraw.com/doc/py_api/#pen_delay_down
-pen_delay_up = 0
+#https://axidraw.com/doc/py_api/#pen_delay_up
+pen_up_delay = 0
 
 num_copies = 1
 copies_spacing = 2.7
@@ -51,6 +51,7 @@ def print_arguments():
 	print("-c or -copies: number of copies (horizontally)")
 	print("-cs : copy spacing (horizontally in inches)")
 	print("-text : slow setting for text (overrides -s, -up_speed, -pos_down)")
+	print("-d : pen up delay in millis (-500, 500)")
 	print("-h or -help: help")
 
 
@@ -128,7 +129,7 @@ if (len(sys.argv) >= 2):
 			i-=1	#no value for this option
 
 		elif arg == "-d":
-			pen_delay_up = float(val)
+			pen_up_delay = float(val)
 
 		elif arg == "-c" or arg == "-copeis":
 			num_copies = int(val)
@@ -152,7 +153,7 @@ print("pen down speed: ",pen_down_speed)
 print("pen up speed: ",pen_up_speed)
 print("use constant speed: ",use_const_speed)
 print("pen down height: ",pen_down_height)
-print("pen up delay: ",pen_delay_up)
+print("pen up delay: ",pen_up_delay)
 print("copies: ",num_copies)
 print("copies spacing: ",copies_spacing)
 
@@ -174,7 +175,7 @@ ad.options.speed_pendown = pen_down_speed
 ad.options.speed_penup = pen_up_speed
 ad.options.const_speed = use_const_speed
 ad.options.pen_pos_down = pen_down_height
-ad.options.pen_delay_up = pen_delay_up
+ad.options.pen_delay_up = pen_up_delay
 
 ad.update() #set the options
 
