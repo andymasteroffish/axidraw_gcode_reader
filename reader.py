@@ -46,11 +46,11 @@ def print_arguments():
 	print("-scale : multiplier for print scale")
 	print("-s or -speed : pen down speed")
 	print("-up_speed : pen up speed")
-	print("-conts : move at constant speed")
+	print("-const : move at constant speed")
 	print("-pos_down : pen down height (0-100)  (lower numbers = lower pen, default 45)")
 	print("-c or -copies: number of copies (horizontally)")
 	print("-cs : copy spacing (horizontally in inches)")
-	print("-text : slow setting for text (overrides -s, -up_speed, -pos_down)")
+	print("-text : slow setting for text (overrides -s, -up_speed, -pos_down, -pen_up_delay)")
 	print("-d : pen up delay in millis (-500, 500)")
 	print("-h or -help: help")
 
