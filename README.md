@@ -58,7 +58,7 @@ mover.py has a few optional arguments
 Flag 			| Default Value | Description
 ---- 			| ------------- | -----------
 -d 				| 0.01			| how far to move with each keystroke (in inches)
-`-pos_down` 		| 45			| pen down height
+-pos_down 		| 45			| pen down height
 -h 				| n/a 			| prints help info
 
 
