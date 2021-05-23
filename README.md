@@ -55,10 +55,10 @@ Be aware that when you first turn it on, you will only be able to move down and 
 
 mover.py has a few optional arguments
 
-Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 			| Default Value | Description
+Flag 			| Default Value | Description
 ---- 			| ------------- | -----------
 -d 				| 0.01			| how far to move with each keystroke (in inches)
--pos_down 		| 45			| pen down height
+`-pos_down` 		| 45			| pen down height
 -h 				| n/a 			| prints help info
 
 
