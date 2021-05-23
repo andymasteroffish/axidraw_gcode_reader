@@ -16,7 +16,7 @@ It requires one argument: the g-code file you want to plot
 There are several optional arguments. Unless the default value is n/a they need to be followed with a numerical value
 
 Flag 			| Default Value | Description
----- 			| ------------- | -----------
+--------- 		| ---------		| -----------
 -s or -speed 	| 25			| pen down speed
 -up_speed 		| 75			| pen up speed
 -const 			| n/a 			| move at constant speed (by default the pen will speed up towards the maximum on long strokes)
@@ -81,3 +81,5 @@ I use this tool for all of my plotter work. You can see what I have for sale at 
 ## Getting in touch
 
 If you wind up using this or modifying it to meet your needs, I'd love to hear from you! Drop me a line at andy [at] andymakes [dot] com.
+
+This code is made available using the GNU General Public License v3.0
