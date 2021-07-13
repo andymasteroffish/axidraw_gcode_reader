@@ -13,7 +13,7 @@ python_version = sys.version_info[0]
 
 keep_going = True
 move_dist = 0.01
-pen_down_height = 45
+pen_down_height = 42
 pen_down = False
 
 

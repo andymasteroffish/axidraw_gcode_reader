@@ -33,11 +33,11 @@ scale_factor = 1
 #https://axidraw.com/doc/py_api/#speed_pendown
 pen_down_speed = 25
 pen_up_speed = 75
-pen_down_height = 45  #axidraw default is 40
+pen_down_height = 42  #axidraw default is 40
 #https://axidraw.com/doc/py_api/#const_speed
 use_const_speed = False
 #https://axidraw.com/doc/py_api/#pen_delay_up
-pen_up_delay = 0
+pen_up_delay = 100
 
 num_copies = 1
 copies_spacing = 2.7
