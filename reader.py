@@ -107,12 +107,9 @@ if (len(sys.argv) >= 2):
 			scale_factor = float(val)
 
 		elif arg == "-text":
-			# pen_down_speed = 1
-			# pen_up_speed = 4
-			# pen_pos_down = 43
 			pen_down_speed = 3
 			pen_up_speed = 10
-			pen_pos_down = 43
+			pen_down_height = 43
 			pen_up_delay = 100
 			i -= 1
 
