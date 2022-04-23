@@ -46,6 +46,8 @@ pen_rate_raise = 75
 num_copies = 1
 copies_spacing = 2.7
 
+show_progress = True
+
 def print_arguments():
 	print("-scale : multiplier for print scale")
 	print("-s or -speed : pen down speed")
@@ -58,6 +60,7 @@ def print_arguments():
 	print("-d : pen up delay in millis (-500, 500)")
 	print("-rl pen rate lower (1 to 100")
 	print("-rr pen rate raise (1 to 100")
+	print("-hp hide progress text")
 	print("-h or -help: help")
 
 
@@ -147,6 +150,9 @@ if (len(sys.argv) >= 2):
 		elif arg == "-cs":
 			copies_spacing = float(val)
 
+		elif arg == "-hp":
+			show_progress = False
+
 		elif arg == "-h" or arg == "-help":
 			print_arguments()
 			sys.exit();
@@ -211,7 +217,8 @@ for copy_id in range(0, num_copies):
 		time_left = (elapsed_time / prc) - elapsed_time
 
 		progress_str = str( int(prc*100))
-		print ("progress: "+progress_str+"  time: "+seconds2time(elapsed_time)+"  estimated time left: "+seconds2time(time_left))
+		if show_progress:
+			print ("progress: "+progress_str+"  time: "+seconds2time(elapsed_time)+"  estimated time left: "+seconds2time(time_left))
 
 		#print(this_line[0:-1])	#chopping off the last character because it is a newlien char
 
