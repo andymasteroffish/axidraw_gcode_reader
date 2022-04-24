@@ -152,6 +152,7 @@ if (len(sys.argv) >= 2):
 
 		elif arg == "-hp":
 			show_progress = False
+			i-=1	#no value for this option
 
 		elif arg == "-h" or arg == "-help":
 			print_arguments()
